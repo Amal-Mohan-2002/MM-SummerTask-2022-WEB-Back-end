@@ -6,8 +6,7 @@ const mongoose = require('mongoose')
 
 mongoose.connect('mongodb+srv://amal:mymongo123321@restapi.pu730yx.mongodb.net/?retryWrites=true&w=majority',{useNewUrlParser: true})
 
-const productsRoutes = require('./api/routes/products')
-const orderRoutes = require('./api/routes/orders');
+
 const articlesRoutes = require('./api/routes/articles')
 
 
@@ -31,8 +30,6 @@ app.use((req,res,next)=>{
 })
 
 // Routes that handle requests
-app.use('/products', productsRoutes )
-app.use('/orders', orderRoutes )
 app.use('/api/article', articlesRoutes)
 
 // Error
