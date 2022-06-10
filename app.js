@@ -4,6 +4,7 @@ const morgan = require('morgan')
 const bodyParser = require('body-parser')
 const mongoose = require('mongoose')
 
+// Connecting to the database (MongoDB Alas)
 mongoose.connect('mongodb+srv://amal:mymongo123321@restapi.pu730yx.mongodb.net/?retryWrites=true&w=majority',{useNewUrlParser: true})
 mongoose.Promise = global.Promise
 

@@ -1,8 +1,9 @@
+// Importing necessary packages
 const express = require("express");
 const router = express.Router()
 const mongoose = require('mongoose');
-const { request } = require("../../app");
 
+// Importing models
 const Article = require('../models/article')
 
 // List articles
@@ -40,6 +41,7 @@ router.get('/all',(req, res, next)=>{
 // Trending articles
 router.get('/trending',(req, res, next)=>{
     Article.find().sort({ views: -1 })
+        .select('-__v')
         .exec()
         .then(docs=>{
             const response = {
@@ -72,7 +74,7 @@ router.get('/trending',(req, res, next)=>{
 router.get('/:articleId',(req,res,next)=>{
     const id =req.params.articleId
     Article.findOneAndUpdate({_id :id}, {$inc : {'views' : 1}})
-        .select('title _id location created_at description views likes ')
+        .select('-__v')
         .exec()
         .then(doc=>{
             console.log('From Database',doc);
