@@ -5,6 +5,7 @@ const bodyParser = require('body-parser')
 const mongoose = require('mongoose')
 
 mongoose.connect('mongodb+srv://amal:mymongo123321@restapi.pu730yx.mongodb.net/?retryWrites=true&w=majority',{useNewUrlParser: true})
+mongoose.Promise = global.Promise
 
 
 const articlesRoutes = require('./api/routes/articles')
