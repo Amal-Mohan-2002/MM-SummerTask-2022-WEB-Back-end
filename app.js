@@ -3,14 +3,22 @@ const app= express()
 const morgan = require('morgan')
 const bodyParser = require('body-parser')
 const mongoose = require('mongoose')
+const {MONGOCONURL} = require("./keys")
+require('./api/models/user')
+
+
 
 // Connecting to the database (MongoDB Alas)
-mongoose.connect('mongodb+srv://amal:mymongo123321@restapi.pu730yx.mongodb.net/?retryWrites=true&w=majority',{useNewUrlParser: true})
-mongoose.Promise = global.Promise
-
+mongoose.connect(MONGOCONURL,{useNewUrlParser: true})
+mongoose.connection.on("connected", ()=>{
+    console.log('MongoDB connection successful!')
+})
+mongoose.connection.on("error", (err)=>{
+    console.log('MongoDB connection error!',err)
+})
 
 const articlesRoutes = require('./api/routes/articles')
-
+const usersRoutes = require('./api/routes/auth')
 
 // Middleware init
 app.use(morgan('dev'))
@@ -33,6 +41,7 @@ app.use((req,res,next)=>{
 
 // Routes that handle requests
 app.use('/api/article', articlesRoutes)
+app.use('/api/article', usersRoutes)
 
 // Error
 app.use((req,res,next)=>{

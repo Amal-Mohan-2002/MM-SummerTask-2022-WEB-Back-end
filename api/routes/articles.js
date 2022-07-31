@@ -103,7 +103,9 @@ router.post('/',(req, res, next)=>{
         _id : new mongoose.Types.ObjectId(),
         title: req.body.title,
         location: req.body.location,
-        description: req.body.description
+        description: req.body.description,
+        photo: req.body.photo
+
 
     })
     article

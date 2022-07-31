@@ -10,6 +10,7 @@ const articleSchema= mongoose.Schema({
         type: String,
         required: true
     },
+
     created_at    : {
             type: Date, 
             required: true, 
@@ -27,6 +28,10 @@ const articleSchema= mongoose.Schema({
     likes : {
         type: Number,
         default: 0
+    },
+    photo : {
+        type: String,
+        required: true
     }
 
 })
